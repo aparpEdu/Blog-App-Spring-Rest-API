@@ -1,6 +1,7 @@
 package com.example.imu.blog.comment;
 
 import com.example.imu.blog.utils.AppConstants;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class CommentController {
     }
 
     @PostMapping("{postId}/comments")
-    public ResponseEntity<CommentDto> createComment(@PathVariable Long postId, @RequestBody CommentDto comment){
+    public ResponseEntity<CommentDto> createComment(@PathVariable Long postId, @Valid @RequestBody CommentDto comment){
         return new ResponseEntity<>(commentService.createComment(postId, comment), HttpStatus.CREATED);
     }
 
@@ -36,7 +37,7 @@ public class CommentController {
     }
 
     @PutMapping("{postId}/comments/{commentId}")
-    public ResponseEntity<CommentDto> updateComment(@PathVariable Long postId, @PathVariable Long commentId, @RequestBody CommentDto commentDto){
+    public ResponseEntity<CommentDto> updateComment(@PathVariable Long postId, @PathVariable Long commentId, @Valid @RequestBody CommentDto commentDto){
         return ResponseEntity.ok(commentService.updateComment(postId, commentId, commentDto));
     }
 

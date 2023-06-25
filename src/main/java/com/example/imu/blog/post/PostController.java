@@ -1,11 +1,14 @@
 package com.example.imu.blog.post;
 
 import com.example.imu.blog.utils.AppConstants;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+
+
 
 @RestController
 @RequestMapping("/api/posts")
@@ -15,8 +18,9 @@ public class PostController {
     public PostController(PostServiceImpl postService) {
         this.postService = postService;
     }
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("")
-    public ResponseEntity<PostDto> createPost(@RequestBody PostDto postDto){
+    public ResponseEntity<PostDto> createPost(@Valid @RequestBody PostDto postDto){
         return new ResponseEntity<>(postService.createPost(postDto), HttpStatus.CREATED);
     }
 
@@ -32,12 +36,12 @@ public class PostController {
     public ResponseEntity<PostDto> getPostById(@PathVariable(name = "id") Long id){
         return ResponseEntity.ok(postService.getPostById(id));
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("{id}")
-    public ResponseEntity<PostDto> updatePost(@PathVariable(name = "id") Long id, @RequestBody PostDto postDto){
+    public ResponseEntity<PostDto> updatePost(@PathVariable(name = "id") Long id, @Valid @RequestBody PostDto postDto){
         return ResponseEntity.ok(postService.updatePost(id,postDto));
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("{id}")
     public ResponseEntity<String> deletePost(@PathVariable Long id){
         postService.deletePost(id);
