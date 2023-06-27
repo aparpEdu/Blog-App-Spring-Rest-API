@@ -18,4 +18,5 @@ public class PostDto {
     private String description;
     @Size(max = 200, message = "content should not be larger than 200 characters")
     private String content;
+    private Long categoryId;
 }

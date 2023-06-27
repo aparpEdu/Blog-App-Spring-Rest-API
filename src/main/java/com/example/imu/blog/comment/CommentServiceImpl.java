@@ -5,6 +5,7 @@ import com.example.imu.blog.exception.ResourceNotFoundException;
 //import com.example.imu.blog.mapper.CustomMapper;
 import com.example.imu.blog.post.Post;
 import com.example.imu.blog.post.PostRepository;
+import com.example.imu.blog.utils.CustomMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,11 +20,11 @@ import java.util.Optional;
 @Service
 public class CommentServiceImpl implements CommentService{
 
-    private final ModelMapper mapper;
+    private final CustomMapper mapper;
     private final CommentRepository commentRepository;
     private final PostRepository postRepository;
 
-    public CommentServiceImpl(ModelMapper mapper, CommentRepository commentRepository, PostRepository postRepository) {
+    public CommentServiceImpl(CustomMapper mapper, CommentRepository commentRepository, PostRepository postRepository) {
         this.mapper = mapper;
         this.commentRepository = commentRepository;
         this.postRepository = postRepository;

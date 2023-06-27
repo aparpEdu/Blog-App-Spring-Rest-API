@@ -1,4 +1,4 @@
-package com.example.imu.blog.utils;
+package com.example.imu.blog.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

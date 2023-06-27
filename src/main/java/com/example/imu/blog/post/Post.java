@@ -1,5 +1,6 @@
 package com.example.imu.blog.post;
 
+import com.example.imu.blog.category.Category;
 import com.example.imu.blog.comment.Comment;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -34,4 +35,7 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Comment> comments =  new HashSet<>();
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
 }
