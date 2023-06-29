@@ -12,7 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(
-        name = "posts", schema = "mm", uniqueConstraints = {@UniqueConstraint(columnNames = {"post_title"})}
+        name = "posts",  uniqueConstraints = {@UniqueConstraint(columnNames = {"post_title"})}
 )
 @Data
 @AllArgsConstructor
