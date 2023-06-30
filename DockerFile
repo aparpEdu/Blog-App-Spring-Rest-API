@@ -1,0 +1,9 @@
+FROM eclipse-temurin:17
+
+LABEL mentainer = "alexanderparpulansky@gmail.com"
+
+WORKDIR /app
+
+COPY target/imu-0.0.1-SNAPSHOT.jar /app/blogapp-docker.jar
+
+ENTRYPOINT ["java", "-jar", "blogapp-docker.jar"]
